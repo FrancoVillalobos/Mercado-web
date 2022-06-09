@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-success ">
+    <button id="carrito" type="button" class="btn m-auto" data-toggle="modal" data-target="#modalproductos">
+        <img src="/img/carrito.svg" class="carrito drop" alt="carrito">
+    </button>
+</nav>
+
+<h1 class="text-center p-4">Bienvenido al Mercado Web, seleccione sus productos.</h1>
+
+<script>
+    $('.carrito').click(function () {
+        let productos = JSON.parse(localStorage.getItem("productos"))
+        let prod = ''
+        productos.forEach(pr => prod += `
+        <div class="producto"> <img width="100" src="/img/${pr}.png" alt="">  </div>`)
+        console.log("prod", prod)
+        $('#productos').html(prod)
+    })
+
+    $('.carrito').click(() => {
+        let productos = JSON.parse(localStorage.getItem("productos"))
+        $(this).attr('src')
+    })
+</script>
+
+
+<!-- Modal exampleModalCenter-->
+<div class="modal fade" id="modalproductos" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="productos"></div>
+                <p class="text-center">Productos Agregados</p>
+            </div>
+        </div>
+    </div>
+</div>

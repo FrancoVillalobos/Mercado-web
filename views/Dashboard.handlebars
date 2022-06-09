@@ -1,0 +1,44 @@
+{{> Menu }}
+
+{{> MainSection }}
+
+<!-- Modal -->
+{{!-- <div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Productos seleccionados</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body row" id="productos">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div> --}}
+
+<script>
+    let productos = []
+    localStorage.setItem('productos', JSON.stringify(productos))
+    $('.producto').click(function (e) {
+        $(this).addClass('seleccionado')
+        let productos = JSON.parse(localStorage.getItem("productos"))
+        let exist = productos.find(p => p === this.id)
+        if (!exist) {
+            productos.push(this.id)
+            console.log(productos)
+            localStorage.setItem('productos', JSON.stringify(productos))
+        }
+    })
+    $('.producto').dblclick(function () {
+        $(this).removeClass('seleccionado')
+        let productos = JSON.parse(localStorage.getItem("productos"))
+        productos = productos.filter(p => p !== this.id)
+        console.log(productos)
+        localStorage.setItem('productos', JSON.stringify(productos))
+    })
+</script>
